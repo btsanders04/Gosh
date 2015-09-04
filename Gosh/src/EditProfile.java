@@ -43,7 +43,7 @@ public class EditProfile extends HttpServlet {
 		request.setAttribute("action","EditProfile");
 		request.setAttribute("name",user.getFullname());
 		request.setAttribute("email",user.getUserEmail());
-		request.setAttribute("userName", user.getUsername());
+		request.setAttribute("username", user.getUsername());
 		request.setAttribute("password",user.getUserPassword());
 		getServletContext().getRequestDispatcher("/SignUp.jsp").forward(request, response);
 	}
