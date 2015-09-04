@@ -25,7 +25,16 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li><a href="#">Browse</a></li>
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="#">Browse <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><form action="GetAll" method="POST">
+									<input type="submit" value="Products">
+								</form></li>
+							<li><form action="GetAll" method="GET">
+									<input type="submit" value="Shops">
+								</form></li>
+						</ul></li>
 					<li><a href="#">Search</a></li>
 					<%
 						if ((Boolean) session.getAttribute("loggedIn")) {
