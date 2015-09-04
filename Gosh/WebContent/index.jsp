@@ -24,7 +24,7 @@
 		}
 	%>
 
-	<jsp:include page="NavBar.jsp" />
+<jsp:include page="NavBar.jsp" />
 	<div class="container">
 		<div class="jumbotron">
 			<h1>Welcome to Gosh!</h1>
@@ -33,7 +33,7 @@
 	<%if (request.getParameter("logOut") != null) {
 			if (request.getParameter("logOut").equals("true")) {
 				%>
-	<div class="container">
+	<div class"container">
 		<div class="alert alert-success">
 			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 			<strong>Success!</strong> You have logged out.

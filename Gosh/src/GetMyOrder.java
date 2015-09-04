@@ -47,14 +47,14 @@ public class GetMyOrder extends HttpServlet {
 					TypedQuery<Long> query = DBUtil.createQuery("SELECT count( distinct g.orderId) FROM GoshOrder g WHERE g.goshUser = ?1", Long.class);
 					query.setParameter(1, User);
 					count= query.getSingleResult();
+					System.out.println("COUNT " + count);
 					if(count==0){
 						alert="You don't have any order.";
 						// Set response content type
-						response.setContentType("text/html");
+						//response.setContentType("text/html");
 						request.setAttribute("alert", alert);
-						getServletContext().getRequestDispatcher("/error.jsp").include(
-								request, response);
 						alert = "";
+						
 					}else{
 //select unique order number of this user into a list. 
 						List<Long> orderidList;

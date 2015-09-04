@@ -20,8 +20,6 @@ import model.GoshProduct;
 import model.GoshShop;
 import model.GoshUser;
 
-
-
 /**
  * Servlet implementation class AddComment
  */
@@ -42,31 +40,61 @@ public class GetAll extends HttpServlet {
 	 *      response)
 	 */
 	@SuppressWarnings("null")
-	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-		
-				String List = null;
-		
-				String qString= "SELECT g FROM GoshShop g";
-				TypedQuery<GoshShop> q = DBUtil.createQuery(qString, GoshShop.class);
-					List<GoshShop> shops=q.getResultList();
-					for(int i=0;i<shops.size();i++){
-						long shop_id = shops.get(i).getShopId();
-						String photo = shops.get(i).getShopPhoto();
-						String shop_name = shops.get(i).getShopName();
-						String description = shops.get(i).getShopDesc();
-						
-						List += "<li class=\"list-group-item\"><img src=\""+ photo+ "\" style=\"width:120px;height:120px\">"
-								+ "<a href=\"GetShopDetail?id="+ shop_id
-								+ "\">" + shop_name + "</a><br>  "
-								+ description
-								+ "</b><br></li>";
-						//Set response content type
-						response.setContentType("text/html");
-						request.setAttribute("List", List);
-						getServletContext().getRequestDispatcher("/AllList.jsp")
-								.forward(request, response);
-						}
-				List=null;
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		if (request.getParameter("All").equals("shops")) {
+			String List = null;
+
+			String qString = "SELECT g FROM GoshShop g";
+			TypedQuery<GoshShop> q = DBUtil
+					.createQuery(qString, GoshShop.class);
+			List<GoshShop> shops = q.getResultList();
+			for (int i = 0; i < shops.size(); i++) {
+				long shop_id = shops.get(i).getShopId();
+				String photo = shops.get(i).getShopPhoto();
+				String shop_name = shops.get(i).getShopName();
+				String description = shops.get(i).getShopDesc();
+
+				List += "<li class=\"list-group-item\"><img src=\"" + photo
+						+ "\" style=\"width:120px;height:120px\">"
+						+ "<a href=\"GetShopDetail?id=" + shop_id + "\">"
+						+ shop_name + "</a><br>  " + description
+						+ "</b><br></li>";
+				// Set response content type
+				response.setContentType("text/html");
+				request.setAttribute("List", List);
+				getServletContext().getRequestDispatcher("/AllList.jsp")
+						.forward(request, response);
+			}
+			List = null;
+		} else {
+			String List = null;
+			String qString = "SELECT g FROM GoshProduct g";
+			TypedQuery<GoshProduct> q = DBUtil.createQuery(qString,
+					GoshProduct.class);
+			List<GoshProduct> products = q.getResultList();
+			for (int i = 0; i < products.size(); i++) {
+				long product_id = products.get(i).getProductId();
+				String photo = products.get(i).getProductPhoto();
+				String product_name = products.get(i).getProductName();
+				String description = products.get(i).getProductDesc();
+				double price = products.get(i).getProductPrice();
+				double qty = products.get(i).getProductQty();
+
+				List += "<li class=\"list-group-item\"><img src=\"" + photo
+						+ "\" style=\"width:120px;height:120px\">"
+						+ "<a href=\"GetProductDetail?id=" + product_id + "\">"
+						+ product_name + "</a><br>  " + price + "<br>" + qty
+						+ " In-stock<br>" + description + "</b><br></li>";
+				// Set response content type
+				response.setContentType("text/html");
+				request.setAttribute("List", List);
+				getServletContext().getRequestDispatcher("/AllList.jsp")
+						.forward(request, response);
+
+			}
+			List = null;
+		}
 	}
 
 	/**
@@ -76,34 +104,6 @@ public class GetAll extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String List = null;
-		String qString = "SELECT g FROM GoshProduct g";
-		TypedQuery<GoshProduct> q = DBUtil.createQuery(qString, GoshProduct.class);
-			List<GoshProduct> products=q.getResultList();
-			for(int i=0;i<products.size();i++){
-				long product_id = products.get(i).getProductId();
-				String photo = products.get(i).getProductPhoto();
-				String product_name = products.get(i).getProductName();
-				String description = products.get(i).getProductDesc();
-				double price = products.get(i).getProductPrice();
-				double qty = products.get(i).getProductQty();
-				
-				List += "<li class=\"list-group-item\"><img src=\""+ photo+ "\" style=\"width:120px;height:120px\">"
-						+ "<a href=\"GetProductDetail?id="+ product_id
-						+ "\">" + product_name + "</a><br>  "
-						+price
-						+"<br>"
-						+qty
-						+" In-stock<br>"
-						+ description
-						+ "</b><br></li>";
-				//Set response content type
-				response.setContentType("text/html");
-				request.setAttribute("List", List);
-				getServletContext().getRequestDispatcher("/AllList.jsp")
-						.forward(request, response);
-			
-				}
-			List=null;
+
 	}
 }

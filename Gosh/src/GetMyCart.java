@@ -67,7 +67,7 @@ public class GetMyCart extends HttpServlet {
 					// Set response content type
 					response.setContentType("text/html");
 					request.setAttribute("alert", alert);
-					getServletContext().getRequestDispatcher("/error.jsp").include(
+					getServletContext().getRequestDispatcher("/MyCart.jsp").include(
 							request, response);
 					alert = "";
 				}else{
