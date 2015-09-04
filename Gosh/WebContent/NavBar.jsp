@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>BullHorn</title>
+<title>GoshNav</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -39,8 +39,10 @@
 					<%
 						if ((Boolean) session.getAttribute("loggedIn")) {
 					%>
-					<li><a href="#">ShoppingCart</a></li>
-					<li><a href="#">MyShop</a></li>
+					<li><a href="#"><span
+							class="glyphicon glyphicon-shopping-cart"></span></a></li>
+					<li><a href="MyShop"><span
+							class="glyphicon glyphicon-home"></span></a></li>
 					<%
 						}
 					%>
