@@ -89,7 +89,7 @@ public class MyShop extends HttpServlet {
 			pList.append("<div class = \"container\"> "
 					+ "<div style = \"border: 2px solid black\">"
 					+ "<div class = \"row\"><div class = \"col-sm-2\">"
-					+ "<p><a href=\"ProductDetails?ProductId="
+					+ "<p><a href=\"GetProductDetail?id="
 					+ product.getProductId()
 					+ "\" >"
 					+ product.getProductName()

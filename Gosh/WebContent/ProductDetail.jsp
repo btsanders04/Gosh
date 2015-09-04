@@ -14,7 +14,7 @@
 <title>Post</title>
 </head>
 <body>
-
+<jsp:include page="NavBar.jsp" />
 <div class="container">
 <ul class="list-group">
    <h3>Product Profile</h3>
