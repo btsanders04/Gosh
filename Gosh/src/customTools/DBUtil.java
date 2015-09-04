@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 
 public class DBUtil {
 	private static final EntityManagerFactory emf = Persistence
-			.createEntityManagerFactory("ShoppingCart");
+			.createEntityManagerFactory("Gosh");
 	public static EntityManagerFactory getEmFactory() {
 		return emf;
 	}
