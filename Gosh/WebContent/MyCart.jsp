@@ -18,8 +18,18 @@
 <body>
 	<jsp:include page="NavBar.jsp" />
 	${alert} ${myCart}
+	<form class="form-horizontal" role="form" method="get">
+		<br> Tax: ${grandTax}<br> Total: ${grandTotal}
 
 
+	</form>
+	<form class="form" role="form" action="Checkout" method="get">
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-default" name="checkout">Checkout</button>
+			</div>
+		</div>
+	</form>
 
 </body>
 </html>

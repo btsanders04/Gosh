@@ -80,12 +80,19 @@ public class GetAll extends HttpServlet {
 				String description = products.get(i).getProductDesc();
 				double price = products.get(i).getProductPrice();
 				double qty = products.get(i).getProductQty();
-
-				List += "<li class=\"list-group-item\"><img src=\"" + photo
-						+ "\" style=\"width:120px;height:120px\">"
-						+ "<a href=\"GetProductDetail?id=" + product_id + "\">"
-						+ product_name + "</a><br>  " + price + "<br>" + qty
-						+ " In-stock<br>" + description + "</b><br></li>";
+				System.out.println(products.get(i));
+				List += "<li class=\"list-group-item\"><form class=\"form-horizontal\" role=\"form\" method=\"get\" action=\"AddToCart\"><img src=\""+ photo+ "\" style=\"width:120px;height:120px\">"
+						+"<input type=\"hidden\" name=\"productId\" value=\""+product_id+"\">"
+						+ "<a href=\"GetProductDetail?id="+ product_id
+						+ "\">" + product_name + "</a><br>  "
+						+price
+						+"<br>"
+						+"Qty: "
+						+"<input type=\"number\" name=\"quantity\" max=\""+qty+"\" min=\"0\">"
+						+"<br>" +description
+						+ "</b><br>"
+						+"<input type=\"submit\" name=\"submit\" value=\"Add to cart\">"
+						+ "</form></li>";
 				// Set response content type
 				response.setContentType("text/html");
 				request.setAttribute("List", List);
