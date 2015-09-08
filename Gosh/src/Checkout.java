@@ -84,7 +84,7 @@ public class Checkout extends HttpServlet {
 				GoshOrderDB.insert(thisOrder);
 				
 			}
-			
+		
 // Empty cart
 			String qString = "select g from GoshCart g where g.goshUser = ?1";
 			TypedQuery<GoshCart> q = DBUtil.createQuery(qString, GoshCart.class);
