@@ -79,7 +79,7 @@ public class Checkout extends HttpServlet {
 					}else{
 						tempProduct.setProductQty(tempProduct.getProductQty()-tempQty);
 						GoshProductDB.update(tempProduct);
-					}
+					
 	// Add to My order
 			
 			for (int i = 0; i < cart.size(); i++) {
@@ -121,7 +121,7 @@ public class Checkout extends HttpServlet {
 			request.getSession().removeAttribute("payable");
 			request.getSession().removeAttribute("payable");
 					}
-					
+				}
 
 	}
 
