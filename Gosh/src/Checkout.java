@@ -62,11 +62,11 @@ public class Checkout extends HttpServlet {
 			int tempQty = tempCart.getProductQty();
 			long tempId = tempCart.getGoshProduct().getProductId();
 
-			String qString2 = "SELECT g FROM GoshProduct g where g.productId = ?1";
-			TypedQuery<GoshProduct> q2 = DBUtil.createQuery(qString2,
-					GoshProduct.class);
-			q2.setParameter(1, tempId);
-			GoshProduct tempProduct = new GoshProduct();
+		//	String qString2 = "SELECT g FROM GoshProduct g where g.productId = ?1";
+	//		TypedQuery<GoshProduct> q2 = DBUtil.createQuery(qString2,
+	//				GoshProduct.class);
+		//	q2.setParameter(1, tempId); 
+			GoshProduct tempProduct = updateList.get(j).getGoshProduct();
 			tempProduct.setProductQty(tempProduct.getProductQty() - tempQty);
 			GoshProductDB.update(tempProduct);
 
@@ -79,7 +79,7 @@ public class Checkout extends HttpServlet {
 			DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 			Date orderdate = new Date();
 			thisOrder.setOrderDate(orderdate);
-			GoshOrderDB.insert(thisOrder);
+			DBUtil.addToDB(thisOrder);
 
 			GoshCartDB.delete(updateList.get(j));
 		}
@@ -106,5 +106,6 @@ public class Checkout extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
+
 
 }
