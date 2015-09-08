@@ -67,21 +67,10 @@ public class Checkout extends HttpServlet {
 					TypedQuery<GoshProduct> q2 = DBUtil.createQuery(qString2, GoshProduct.class);
 					q2.setParameter(1, tempId);
 					GoshProduct tempProduct = new GoshProduct();
-					if((tempProduct.getProductQty()-tempQty)<0){
-						String pName = tempProduct.getProductName();
-						String alert3 = "The item: "+ pName +" is not available!";
-						// Set response content type
-						response.setContentType("text/html");
-
-						request.setAttribute("alert", alert3);
-
-						getServletContext().getRequestDispatcher("/error.jsp")
-								.include(request, response);
-					}else{
-						tempProduct.setProductQty(tempProduct.getProductQty()-tempQty);
-						GoshProductDB.update(tempProduct);
+					tempProduct.setProductQty(tempProduct.getProductQty()-tempQty);
+					GoshProductDB.update(tempProduct);
 					
-	// Add to My order
+// Add to My order
 			
 			for (int i = 0; i < cart.size(); i++) {
 				GoshOrder thisOrder = new GoshOrder();
@@ -96,7 +85,7 @@ public class Checkout extends HttpServlet {
 				
 			}
 			
-	// Empty cart
+// Empty cart
 			String qString = "select g from GoshCart g where g.goshUser = ?1";
 			TypedQuery<GoshCart> q = DBUtil.createQuery(qString, GoshCart.class);
 			q.setParameter(1, user);
@@ -109,7 +98,7 @@ public class Checkout extends HttpServlet {
 
 			String alert2 = "Cart reset!";
 
-			// Set response content type
+// Set response content type
 			response.setContentType("text/html");
 
 			request.setAttribute("alert", alert);
@@ -122,9 +111,9 @@ public class Checkout extends HttpServlet {
 			request.getSession().removeAttribute("payable");
 			request.getSession().removeAttribute("payable");
 					}
-				}
+			}
 
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse

@@ -85,15 +85,16 @@ public class GetMyCart extends HttpServlet {
 						long priduct_id = product.getProductId();
 					
 						
-						myCart += "<li class=\"list-group-item\"><img src=\""
-							+ product_photo
-							+ "\" style=\"width:120px;height:120px\"> <a href=\"GetProductDetail?id="
-							+ priduct_id
-							+ "\">" + product_name + "</a><br>  "
-							+ "<b>Price: $" + price
-							+ "<br>" + "Qty: "+qty
-							+ "<br>" + "Shipping: "+shipping
-							+ "</b><br></li>";
+						myCart += "<li class=\"list-group-item\"><form class=\"form-horizontal\" role=\"form\" method=\"get\" action=\"UpdateCart\">"
+								+ "<input type=\"hidden\" name=\"product\" value=\""+product+"\"><img src=\""
+										+ product_photo
+										+ "\" style=\"width:120px;height:120px\"> <a href=\"GetProductDetail?id="
+										+ priduct_id
+										+ "\">" + product_name + "</a><br>  "
+										+ "<b>Price: $" + price
+										+ "<br>" + "Qty: <input type=\"number\" name=\"quantity\" value=\""+qty+"\" max=\""+product.getProductQty()+"\"><input type=\"submit\" name=\"submit\" value=\"Update\">"
+										+ "<br>" + "Shipping: "+shipping
+										+ "</b><br></form></li>";
 					}
 
 					// Set response content type

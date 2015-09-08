@@ -37,10 +37,7 @@ public class GetAll extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+
 	@SuppressWarnings("null")
 	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		
@@ -88,15 +85,18 @@ public class GetAll extends HttpServlet {
 				double price = products.get(i).getProductPrice();
 				double qty = products.get(i).getProductQty();
 				
-				List += "<li class=\"list-group-item\"><img src=\""+ photo+ "\" style=\"width:120px;height:120px\">"
+				List += "<li class=\"list-group-item\"><form class=\"form-horizontal\" role=\"form\" method=\"get\" action=\"AddToCart\"><img src=\""+ photo+ "\" style=\"width:120px;height:120px\">"
+						+"<input type=\"hidden\" name=\"product\" value=\""+products.get(i)+"\">"
 						+ "<a href=\"GetProductDetail?id="+ product_id
 						+ "\">" + product_name + "</a><br>  "
 						+price
 						+"<br>"
-						+qty
-						+" In-stock<br>"
-						+ description
-						+ "</b><br></li>";
+						+"Qty: "
+						+"<input type=\"number\" name=\"quantity\" max=\""+qty+"\" min=\"0\">"
+						+"<br>" +description
+						+ "</b><br>"
+						+"<input type=\"submit\" name=\"submit\" value=\"Add to cart\">"
+						+ "</form></li>";
 				//Set response content type
 				response.setContentType("text/html");
 				request.setAttribute("List", List);
