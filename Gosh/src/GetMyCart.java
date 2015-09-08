@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,8 +54,9 @@ public class GetMyCart extends HttpServlet {
 			//TypedQuery<Long> query1 = em.createQuery("SELECT count(u) FROM UserProd u WHERE u.userId = :userid",Long.class);
 			//query1.setParameter("userid", userid);
 			//count= query1.getSingleResult();
-			
-			
+			double grandTotal = 0;
+			double grandTax = 0;
+			String fullList="";
 			String qString = "SELECT g FROM GoshCart g WHERE g.goshUser = ?1";
 			TypedQuery<GoshCart> query = DBUtil.createQuery(qString, GoshCart.class);
 			query.setParameter(1, User);
@@ -82,26 +84,40 @@ public class GetMyCart extends HttpServlet {
 						long qty = carts.get(i).getProductQty();
 						double price = product.getProductPrice();
 						double shipping = product.getProductShip();
-						long priduct_id = product.getProductId();
-					
+						long product_id = product.getProductId();
+						double thisTax = qty*price*0.06;
+						double thisSubtotal = qty*price+thisTax;
+						/*fullList+="<li class=\"list-group-item\"><a href=\"GetProductDetail?id="
+			            		+product_id+"\">"+product_name+"</a><br>  "
+			            		+"<b>Price: $"+price+"</b><br>"
+			            		+"Qty: "+qty+"<br>"
+			            		+"Tax: $"+thisTax+"<br>"
+			            		+"Subtotal: $"+thisSubtotal+"<br>"
+			            		+"</li>";*/
+			            grandTotal+=thisSubtotal;
+			            grandTax+=thisTax;
 						
-						myCart += "<li class=\"list-group-item\"><img src=\""
-							+ product_photo
-							+ "\" style=\"width:120px;height:120px\"> <a href=\"GetProductDetail?id="
-							+ priduct_id
-							+ "\">" + product_name + "</a><br>  "
-							+ "<b>Price: $" + price
-							+ "<br>" + "Qty: "+qty
-							+ "<br>" + "Shipping: "+shipping
-							+ "</b><br></li>";
+						myCart += "<li class=\"list-group-item\"><form class=\"form-horizontal\" role=\"form\" method=\"get\" action=\"UpdateCart\">"
+								+ "<input type=\"hidden\" name=\"product\" value=\""+product+"\"><img src=\""
+										+ product_photo
+										+ "\" style=\"width:120px;height:120px\"> <a href=\"GetProductDetail?id="
+										+ product_id
+										+ "\">" + product_name + "</a><br>  "
+										+ "<b>Price: $" + price
+										+ "<br>" + "Qty: <input type=\"number\" name=\"quantity\" value=\""+qty+"\" max=\""+qty+"\"><input type=\"submit\" name=\"submit\" value=\"Update\">"
+										+ "<br>" + "Shipping: "+shipping
+										+ "</b><br></form></li>";
 					}
-
+					String taxTotal = new DecimalFormat("#.##").format(grandTax);
+					String fullTotal = new DecimalFormat("#.##").format(grandTotal);
 					// Set response content type
 					response.setContentType("text/html");
 
 					request.setAttribute("myCart", myCart);
-
-					getServletContext().getRequestDispatcher("/cartForm.jsp")
+					//request.setAttribute("fullList", fullList);
+					request.setAttribute("grandTotal", fullTotal);
+					request.setAttribute("grandTax", taxTotal);
+					getServletContext().getRequestDispatcher("/MyCart.jsp")
 						.forward(request, response);
 					myCart = "";
 				}
@@ -120,5 +136,8 @@ public class GetMyCart extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
-
+	
+	
+	
 }
+
