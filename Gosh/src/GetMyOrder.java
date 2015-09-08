@@ -95,7 +95,11 @@ public class GetMyOrder extends HttpServlet {
 						+ thisQty + "</p></div>" + "<div class =\"col-sm-2\"><p>"
 						+ thisTax + "</p></div><div class =\"col-sm-2\"><p>"
 						+ thisTotal + "</p></div><div class =\"col-sm-2\"><p>"
-						+ thisOrderDate + "</p></div></div>";
+						+ thisOrderDate + "</p></div></div>"
+						+"<p><a href=\"ReturnItem?productid="
+						+ thisProduct.getProductId() + "&orderid="
+						+ thisOrder.get(j).getOrderId()+"\" >Return"
+						+ "</a></p>";
 				/*
 				 * fullList+= +thisName+"<br>" +"Price: "+thisPrice+"<br>"
 				 * +"Qty: "+thisQty+"<br>" +"Tax: $"+thisTax+"<br>"
