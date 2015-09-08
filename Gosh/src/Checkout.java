@@ -51,7 +51,6 @@ public class Checkout extends HttpServlet {
 		GoshUser user = (GoshUser) session.getAttribute("User");
 		List<GoshCart> cart = (List<GoshCart>) session.getAttribute("cart");
 		String alert = "Thanks for shopping with us!";
-
 //Update Quantity
 				String qString1 = "select g.productQty from GoshCart g where g.goshUser = ?1";
 				TypedQuery<GoshCart> q1 = DBUtil.createQuery(qString1, GoshCart.class);
