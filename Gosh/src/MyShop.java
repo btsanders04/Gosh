@@ -66,7 +66,7 @@ public class MyShop extends HttpServlet {
 		product.setProductPrice(Double.parseDouble(request.getParameter("price")));
 		product.setProductQty(Integer.parseInt(request.getParameter("qty")));
 		product.setProductShip(Double.parseDouble(request.getParameter("ship")));
-		product.setProductId(myShop.getShopId());
+		product.setGoshShop(myShop);
 		DBUtil.addToDB(product);
 		doGet(request,response);
 	}
