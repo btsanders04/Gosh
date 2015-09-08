@@ -73,11 +73,12 @@ public class Search extends HttpServlet {
 								+ description
 								+ "</b><br></li>";
 						//Set response content type
-						response.setContentType("text/html");
-						request.setAttribute("List", List);
-						getServletContext().getRequestDispatcher("/SearchList.jsp")
-								.forward(request, response);
+						
 						}
+					response.setContentType("text/html");
+					request.setAttribute("List", List);
+					getServletContext().getRequestDispatcher("/SearchList.jsp")
+							.forward(request, response);
 					}
 			}else if(choice.equals("product")){
 				String qString1 = "SELECT count(g) FROM GoshProduct g where g.productName like ?1";
@@ -112,13 +113,13 @@ public class Search extends HttpServlet {
 									+ description
 									+ "</b><br></li>";
 							//Set response content type
-							response.setContentType("text/html");
-							request.setAttribute("List", List);
-							getServletContext().getRequestDispatcher("/SearchList.jsp")
-									.forward(request, response);
+							
 						
 							}
-							
+						response.setContentType("text/html");
+						request.setAttribute("List", List);
+						getServletContext().getRequestDispatcher("/SearchList.jsp")
+								.forward(request, response);
 						}
 				}
 				List=null;

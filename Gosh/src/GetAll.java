@@ -43,7 +43,7 @@ public class GetAll extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		if (request.getParameter("All").equals("shops")) {
-			String List = null;
+			String List = "";
 
 			String qString = "SELECT g FROM GoshShop g";
 			TypedQuery<GoshShop> q = DBUtil
@@ -61,14 +61,15 @@ public class GetAll extends HttpServlet {
 						+ shop_name + "</a><br>  " + description
 						+ "</b><br></li>";
 				// Set response content type
-				response.setContentType("text/html");
-				request.setAttribute("List", List);
-				getServletContext().getRequestDispatcher("/AllList.jsp")
-						.forward(request, response);
+				
 			}
-			List = null;
+			response.setContentType("text/html");
+			request.setAttribute("List", List);
+			getServletContext().getRequestDispatcher("/AllList.jsp")
+					.forward(request, response);
+			//List = null;
 		} else {
-			String List = null;
+			String List = "";
 			String qString = "SELECT g FROM GoshProduct g";
 			TypedQuery<GoshProduct> q = DBUtil.createQuery(qString,
 					GoshProduct.class);
@@ -94,13 +95,13 @@ public class GetAll extends HttpServlet {
 						+"<input type=\"submit\" name=\"submit\" value=\"Add to cart\">"
 						+ "</form></li>";
 				// Set response content type
-				response.setContentType("text/html");
-				request.setAttribute("List", List);
-				getServletContext().getRequestDispatcher("/AllList.jsp")
-						.forward(request, response);
-
+				
 			}
-			List = null;
+			response.setContentType("text/html");
+			request.setAttribute("List", List);
+			getServletContext().getRequestDispatcher("/AllList.jsp")
+					.forward(request, response);
+
 		}
 	}
 
