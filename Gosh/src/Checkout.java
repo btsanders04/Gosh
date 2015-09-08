@@ -68,11 +68,12 @@ public class Checkout extends HttpServlet {
 					q2.setParameter(1, tempId);
 					GoshProduct tempProduct = new GoshProduct();
 					if((tempProduct.getProductQty()-tempQty)<0){
-						String alert3 = "The item is not available!";
+						String pName = tempProduct.getProductName();
+						String alert3 = "The item: "+ pName +" is not available!";
 						// Set response content type
 						response.setContentType("text/html");
 
-						request.setAttribute("alert3", alert3);
+						request.setAttribute("alert", alert3);
 
 						getServletContext().getRequestDispatcher("/error.jsp")
 								.include(request, response);
